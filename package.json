@@ -3,11 +3,11 @@
   "private": true,
   "packageManager": "pnpm@12.4.2",
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "build:server": "turbo run build --filter=...server",
-    "build:landing": "turbo run build --filter=landing",
-    "dev:landing": "turbo run dev --filter=landing",
+    "dev": "node init && turbo run dev",
+    "build": "node init && turbo run build",
+    "build:server": "node init && turbo run build --filter=...server",
+    "build:landing": "node init && turbo run build --filter=landing",
+    "dev:landing": "node init && turbo run dev --filter=landing",
     "docker:server": "docker build -f apps/server/Dockerfile -t spike-server ."
   },
   "devDependencies": {
