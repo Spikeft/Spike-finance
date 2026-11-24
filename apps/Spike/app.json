@@ -4,11 +4,12 @@
     "slug": "Spike",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/spikeblacklogo@3x.png",
     "scheme": "spike",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/spikeblacklogo@3x.png",
+      "bundleIdentifier": "com.Spikeft"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +18,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.spikeft"
     },
     "web": {
       "output": "server",
@@ -41,8 +43,8 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
+          "backgroundColor": "#38DC38",
+          "image": "./assets/images/spikeblacklogo@3x.png",
           "imageWidth": 76
         }
       ]

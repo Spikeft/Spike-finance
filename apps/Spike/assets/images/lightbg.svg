@@ -1,0 +1,30 @@
+<svg width="402" height="557" viewBox="0 0 402 557" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Repeat group 1_inner" data-figma-trr="r12u1.2-0f">
+<path d="M154.257 4.02783H248.639L212.521 253.5H185.783L154.257 4.02783Z" fill="url(#paint0_linear_129_1455)" fill-opacity="0.1"/>
+</g>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(166.213 -63.4192) rotate(30)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(341.867 -35.2354) rotate(60)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(479.896 76.9996) rotate(90)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(543.315 243.212) rotate(120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(515.131 418.866) rotate(150)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(402.896 556.895) rotate(-180)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(236.683 620.315) rotate(-150)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(61.0294 592.131) rotate(-120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-76.9996 479.896) rotate(-90)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-140.419 313.683) rotate(-60)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-112.235 138.029) rotate(-30)"/>
+<g filter="url(#filter0_f_129_1455)">
+<circle cx="207.825" cy="283.09" r="81.1168" fill="white" fill-opacity="0.4"/>
+</g>
+<defs>
+<filter id="filter0_f_129_1455" x="54.2641" y="129.53" width="307.121" height="307.121" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="36.222" result="effect1_foregroundBlur_129_1455"/>
+</filter>
+<linearGradient id="paint0_linear_129_1455" x1="201.448" y1="4.02783" x2="201.703" y2="248.144" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0C490C"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

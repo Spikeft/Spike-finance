@@ -20,6 +20,6 @@
   "scripts": {
     "postinstall": "prisma generate",
     "generate": "prisma generate",
-    "build": "node init && prisma generate"
+    "build": "prisma generate"
   }
 }

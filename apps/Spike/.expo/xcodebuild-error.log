@@ -1,0 +1,7 @@
+** BUILD FAILED **
+
+
+The following build commands failed:
+	PhaseScriptExecution [CP-User]\ Build\ ExpoModulesJSI\ xcframework /Users/angel/Library/Developer/Xcode/DerivedData/Spike-erkmdktitammzqgdpiuwkpeqnidj/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/ExpoModulesJSI.build/Script-46EB2E0001D7A0.sh (in target 'ExpoModulesJSI' from project 'Pods')
+	Building workspace Spike with scheme Spike and configuration Debug
+(2 failures)
