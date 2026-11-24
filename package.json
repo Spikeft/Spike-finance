@@ -8,7 +8,8 @@
     "build:server": "turbo run build --filter=...server",
     "build:landing": "turbo run build --filter=landing",
     "dev:landing": "turbo run dev --filter=landing",
-    "docker:server": "docker build -f apps/server/Dockerfile -t spike-server ."
+    "docker:server": "docker build -f apps/server/Dockerfile -t spike-server .",
+    "eas-build-post-install": "pnpm --filter @spike/shared build"
   },
   "devDependencies": {
     "turbo": "^2.11.10"
