@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import type { User } from '@spike/database';
 import type { VerifyOtpReturnType, VerifyOtpUserResponse } from '@spike/shared';
 
 export class VerifyOtpUserDto implements VerifyOtpUserResponse {
@@ -107,5 +108,5 @@ export class VerifyOtpResponseDto implements VerifyOtpReturnType {
   sessionId: string;
 
   @ApiProperty({ type: () => VerifyOtpUserDto })
-  user: VerifyOtpUserDto;
+  user: User;
 }
