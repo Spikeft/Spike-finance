@@ -80,67 +80,72 @@ export class UserAuthService {
     payload: LoginOrSignUpDto;
     type?: 'email' | 'phone';
   }) {
-    const isEmail =
-      type === 'email' || (Boolean(payload.email) && !payload.phone);
-    const isPhone = type === 'phone' || Boolean(payload.phone);
+    try {
+      const isEmail =
+        type === 'email' || (Boolean(payload.email) && !payload.phone);
+      const isPhone = type === 'phone' || Boolean(payload.phone);
 
-    if (isEmail && !payload.email) {
-      throw new BadRequestException('Email address is required');
-    }
-    if (isPhone && !payload.phone) {
-      throw new BadRequestException('Phone number is required');
-    }
-    if (!isEmail && !isPhone) {
-      throw new BadRequestException(
-        'Please provide either an email address or phone number',
+      if (isEmail && !payload.email) {
+        throw new BadRequestException('Email address is required');
+      }
+      if (isPhone && !payload.phone) {
+        throw new BadRequestException('Phone number is required');
+      }
+      if (!isEmail && !isPhone) {
+        throw new BadRequestException(
+          'Please provide either an email address or phone number',
+        );
+      }
+
+      const method: OtpMethod = isEmail ? OtpMethod.EMAIL : OtpMethod.PHONE;
+      const target = isEmail
+        ? payload.email!.trim().toLowerCase()
+        : payload.phone!.trim();
+
+      this.logger.log(`Processing login/signup for ${method}: ${target}`);
+
+      // Check if user exists
+      let user = await this.databaseService.user.findFirst({
+        where: isEmail ? { email: target } : { phone: target },
+      });
+
+      if (!user) {
+        this.logger.log(`User not found for ${target}. Creating new account...`);
+        user = await this.databaseService.user.create({
+          data: {
+            email: isEmail ? target : undefined,
+            phone: !isEmail ? target : undefined,
+          },
+        });
+
+        // Create primary wallet (MAIN pocket) for new user
+        await this.databaseService.pocket.create({
+          data: {
+            userId: user.id,
+            name: 'Main Balance',
+            type: 'MAIN',
+            currency: 'NGN',
+          },
+        });
+        this.logger.log(`Created new user (${user.id}) with default MAIN pocket`);
+      }
+
+      const { expiresAt } = await this.createAndDispatchOtp(
+        user.id,
+        target,
+        method,
       );
+
+      return {
+        message: `Verification code sent to your ${isEmail ? 'email address' : 'phone number'}`,
+        target,
+        method,
+        expiresAt,
+      };
+    } catch (error) {
+      this.logger.error('Error processing login/signup', error);
+      throw error;
     }
-
-    const method: OtpMethod = isEmail ? OtpMethod.EMAIL : OtpMethod.PHONE;
-    const target = isEmail
-      ? payload.email!.trim().toLowerCase()
-      : payload.phone!.trim();
-
-    this.logger.log(`Processing login/signup for ${method}: ${target}`);
-
-    // Check if user exists
-    let user = await this.databaseService.user.findFirst({
-      where: isEmail ? { email: target } : { phone: target },
-    });
-
-    if (!user) {
-      this.logger.log(`User not found for ${target}. Creating new account...`);
-      user = await this.databaseService.user.create({
-        data: {
-          email: isEmail ? target : undefined,
-          phone: !isEmail ? target : undefined,
-        },
-      });
-
-      // Create primary wallet (MAIN pocket) for new user
-      await this.databaseService.pocket.create({
-        data: {
-          userId: user.id,
-          name: 'Main Balance',
-          type: 'MAIN',
-          currency: 'NGN',
-        },
-      });
-      this.logger.log(`Created new user (${user.id}) with default MAIN pocket`);
-    }
-
-    const { expiresAt } = await this.createAndDispatchOtp(
-      user.id,
-      target,
-      method,
-    );
-
-    return {
-      message: `Verification code sent to your ${isEmail ? 'email address' : 'phone number'}`,
-      target,
-      method,
-      expiresAt,
-    };
   }
 
   /**
@@ -220,8 +225,13 @@ export class UserAuthService {
     clientIp?: string,
     userAgent?: string,
   ) {
-    const target = dto.identifier.trim();
+    const target = dto.identifier.toLocaleLowerCase().trim();
     const code = dto.code.trim();
+
+    console.log({
+      identifier: dto.identifier,
+      code: dto.code,
+    })
 
     const otpRecord = await this.databaseService.otp.findFirst({
       where: {

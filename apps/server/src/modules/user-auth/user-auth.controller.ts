@@ -40,6 +40,7 @@ import { BiometricChallengeDto } from './dto/biometricChallengeDto';
 import { VerifyBiometricDto } from './dto/verifyBiometricDto';
 import { AuthGuard } from '../../common/guards/auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { VerifyOtpResponseDto } from './dto/verifyOtpResponseDto';
 
 @ApiTags('Auth & KYC')
 @Controller('user-auth')
@@ -98,6 +99,7 @@ export class UserAuthController {
   @ApiResponse({
     status: 200,
     description: 'Authentication successful. Returns user and JWT tokens.',
+    type: VerifyOtpResponseDto,
   })
   verifyOtp(@Body() dto: VerifyOtpDto, @Req() req?: Request) {
     const rawIp =

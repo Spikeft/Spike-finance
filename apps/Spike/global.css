@@ -3,6 +3,7 @@
 
 @theme {
   /** Customize Colors **/
+  --color-onboarding-bg: #0C490C;
   --color-primary: #0C490C;
   --color-secondary: #3EF13E;
   --color-primary-background: #FFFFFF;
@@ -26,5 +27,20 @@
   --font-figtree-bold: 'Figtree-Bold';
 
 
+  /** Font Size **/
+  --text-base: 14px;
+  --text-sm: 14px;
+  --text-md: 18px;
+  --text-lg: 24px;
+  --text-32: 32px;
+  --text-xl: 36px;
+  --text-2xl: 48px;
+  --text-3xl: 72px;
+
+  /* Customize spacing scale */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
 
 }
