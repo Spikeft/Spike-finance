@@ -1,4 +1,5 @@
 import '../../global.css'
+import { useEffect } from 'react';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
@@ -6,6 +7,7 @@ import { useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from 'react-native-toastify-expo';
+import OtaUpdateGate from '@/components/ota/OtaUpdateModal';
 
 
 // import { AnimatedSplashOverlay } from '@/components/animated-icon';
@@ -27,6 +29,12 @@ export default function TabLayout() {
         'Inter_18pt-Medium': require('../../assets/fonts/Inter_18pt-Medium.ttf'),
     });
 
+    useEffect(() => {
+        if (fontsLoaded || fontError) {
+            void SplashScreen.hideAsync().catch(() => {});
+        }
+    }, [fontsLoaded, fontError]);
+
     if (!fontsLoaded && !fontError) return null;
 
     return (
@@ -35,6 +43,7 @@ export default function TabLayout() {
                 <QueryClientProvider client={queryClient}>
                     <SafeAreaView edges={['left', 'right']} style={{ width: '100%', height: '100%', backgroundColor: 'white' }}>
                         <Stack screenOptions={{ headerShown: false }} />
+                        <OtaUpdateGate />
                     </SafeAreaView>
                 </QueryClientProvider>
             </ToastProvider>

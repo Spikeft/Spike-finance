@@ -10,6 +10,7 @@ import CustomPhoneInput from '@/components/ui/custom-phone-input'
 import { useLogin } from '@/hooks/use-auth'
 import { router } from 'expo-router'
 import { useLoginState } from '@/states/login-state'
+import { toast } from 'react-native-toastify-expo'
 
 const Home = () => {
     // CSS Variables
@@ -44,27 +45,34 @@ const Home = () => {
     // functions
     const handleLogin = async (data: { email?: string, phone?: string }) => {
         try {
+            const email = loginType === 'EMAIL' ? data.email?.trim() : undefined;
+            const phone = loginType === 'PHONE' ? data.phone?.trim() : undefined;
 
             const response = await login({
                 params: null,
                 body: {
-                    email: data.email,
-                    phone: data.phone
+                    email,
+                    phone,
                 },
                 query: {
-                    type: loginType.toLowerCase()
-                }
+                    type: loginType.toLowerCase(),
+                },
             });
             console.log(response.data);
             setDetails({
-                email: data?.email,
-                phone: data?.phone,
+                email,
+                phone,
                 type: loginType.toLowerCase() as 'email' | 'phone',
-                identifier: data.email || data.phone || ''
-            })
-            router.push('/auth/otp-verification')
-        } catch (error) {
-
+                identifier: email || phone || '',
+            });
+            router.push('/auth/otp-verification');
+        } catch (err: any) {
+            console.error('Login failed:', err);
+            const message =
+                typeof err?.message === 'string'
+                    ? err.message
+                    : 'Unable to sign in. Please check your connection and try again.';
+            toast.error(message);
         }
     }
 

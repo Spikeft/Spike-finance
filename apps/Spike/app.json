@@ -3,6 +3,12 @@
     "name": "Spike",
     "slug": "Spike",
     "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/b2e35350-b401-429c-9ed9-9c1a2e5c067e",
+      "checkAutomatically": "ON_ERROR_RECOVERY",
+      "fallbackToCacheTimeout": 0
+    },
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "scheme": "spike",
