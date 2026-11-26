@@ -33,8 +33,10 @@ export function setUnauthorizedHandler(
   onUnauthorized = handler;
 }
 
+const DEFAULT_API_URL = 'https://spike-finance-api.up.railway.app/api';
+
 export const httpService: AxiosInstance = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL ?? '',
+  baseURL: process.env.EXPO_PUBLIC_API_URL || DEFAULT_API_URL,
   timeout: 15_000,
   headers: {
     'Content-Type': 'application/json',
