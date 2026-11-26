@@ -17,5 +17,9 @@ export const URLS = {
         register_biometric_device: '/user-auth/biometric/register',
         biometeric_challenge: '/user-auth/biometric/challenge',
         biometric_verify: '/user-auth/biometric/verify',
-    }
+    },
+    user: {
+        spike_tag: '/user/spike-tag',
+        check_spike_tag: '/user/spike-tag/check',
+    },
 }   

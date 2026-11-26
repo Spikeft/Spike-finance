@@ -32,7 +32,7 @@ export default function OnboardingStatusView({
     extraContent,
 }: OnboardingStatusViewProps) {
     return (
-        <View className="flex-1 justify-between px-6 pt-12 pb-6">
+        <View className="flex-1 justify-between bg-white px-6 pt-12 pb-6">
             <View className="flex-1 items-center justify-center">
                 <Image
                     source={illustration}

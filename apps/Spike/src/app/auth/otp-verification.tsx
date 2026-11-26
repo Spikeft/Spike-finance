@@ -150,7 +150,7 @@ const OtpVerification = () => {
 
     return (
         <KeyboardAvoidingView
-            className="flex-1 pt-20"
+            className="flex-1 pt-20 bg-white"
             behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
             <View className="flex-1 justify-between px-6 pt-8 pb-6 h-50">

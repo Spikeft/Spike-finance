@@ -43,3 +43,20 @@ export type CreatePinPayload = {
 export type RegisterPushTokenPayload = {
     pushToken: string;
 };
+
+export type CreateSpikeTagPayload = {
+    tag: string;
+};
+
+export type SpikeTagResponse = {
+    hasTag: boolean;
+    tag: string | null;
+    suggestedTag: string;
+    tagRecord: {
+        id: string;
+        userId: string;
+        tag: string;
+        createdAt: string;
+        updatedAt: string;
+    } | null;
+};

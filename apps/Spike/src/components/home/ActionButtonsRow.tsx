@@ -40,6 +40,7 @@ export function ActionButtonsRow({
         />
         <Text style={styles.buttonText}>Transfer</Text>
       </Pressable>
+
     </View>
   );
 }

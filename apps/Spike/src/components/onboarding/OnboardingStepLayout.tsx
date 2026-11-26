@@ -80,7 +80,7 @@ export default function OnboardingStepLayout({
 
     return (
         <KeyboardAvoidingView
-            className="flex-1 pt-20"
+            className="flex-1 pt-20 bg-white"
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
             {/* Top Navigation & Progress Bar */}

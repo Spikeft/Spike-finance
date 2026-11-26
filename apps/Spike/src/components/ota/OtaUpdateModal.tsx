@@ -110,171 +110,166 @@ export function OtaUpdateModal({
             statusBarTranslucent
             onRequestClose={onDismiss}
         >
-            <SafeAreaView
-                className="flex-1 bg-primary-background"
-                edges={['top', 'bottom']}
-            >
-                <View className="flex-1 justify-between px-6 pt-6 pb-6">
-                    <ScrollView
-                        className="flex-1"
-                        contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
-                        showsVerticalScrollIndicator={false}
-                    >
-                        {/* Hero Icon Badge */}
-                        <View className="items-center mt-6">
-                            <Animated.View
-                                style={animatedBadgeStyle}
-                                className="w-24 h-24 rounded-full bg-[#38DC38]/15 items-center justify-center"
-                            >
-                                <View className="w-16 h-16 rounded-full bg-primary items-center justify-center">
-                                    <SymbolView
-                                        name={
-                                            isReady
-                                                ? {
-                                                    ios: 'checkmark.seal.fill',
-                                                    android: 'verified',
-                                                    web: 'verified',
-                                                }
-                                                : {
-                                                    ios: 'arrow.down.circle.fill',
-                                                    android: 'system_update',
-                                                    web: 'system_update',
-                                                }
-                                        }
-                                        size={30}
-                                        tintColor="#3EF13E"
-                                    />
-                                </View>
-                            </Animated.View>
-
-                            {/* Version Pill */}
-                            <View className="mt-5 px-3.5 py-1 rounded-full bg-[#38DC38]/15">
-                                <Text className="font-figtree-medium text-xs text-primary">
-                                    Version {releaseNotes.version} • OTA Update
-                                </Text>
+            <View className="flex-1 justify-between px-6 pt-6 pb-6">
+                <ScrollView
+                    className="flex-1"
+                    contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {/* Hero Icon Badge */}
+                    <View className="items-center mt-6">
+                        <Animated.View
+                            style={animatedBadgeStyle}
+                            className="w-24 h-24 rounded-full bg-[#38DC38]/15 items-center justify-center"
+                        >
+                            <View className="w-16 h-16 rounded-full bg-primary items-center justify-center">
+                                <SymbolView
+                                    name={
+                                        isReady
+                                            ? {
+                                                ios: 'checkmark.seal.fill',
+                                                android: 'verified',
+                                                web: 'verified',
+                                            }
+                                            : {
+                                                ios: 'arrow.down.circle.fill',
+                                                android: 'system_update',
+                                                web: 'system_update',
+                                            }
+                                    }
+                                    size={30}
+                                    tintColor="#3EF13E"
+                                />
                             </View>
+                        </Animated.View>
 
-                            {/* Title & Update Message */}
-                            <Text className="font-figtree-bold text-[30px] leading-[36px] tracking-[-0.6px] text-text-black text-center mt-4">
-                                {headline}
-                            </Text>
-                            <Text className="font-inter-regular text-base leading-6 text-text-body text-center mt-2.5 px-2">
-                                {releaseNotes.message}
+                        {/* Version Pill */}
+                        <View className="mt-5 px-3.5 py-1 rounded-full bg-[#38DC38]/15">
+                            <Text className="font-figtree-medium text-xs text-primary">
+                                Version {releaseNotes.version} • OTA Update
                             </Text>
                         </View>
 
-                        {/* Download Progress Card */}
-                        {showProgress ? (
-                            <View className="mt-7 p-4 rounded-2xl bg-[#F7F7F8] border border-[#EBEBEC]">
-                                <View className="flex-row items-center justify-between mb-2.5">
-                                    <Text className="font-figtree-medium text-sm text-text-black">
-                                        {progressStatusText}
-                                    </Text>
-                                    <Text className="font-figtree-bold text-sm text-primary">
-                                        {progress}%
-                                    </Text>
-                                </View>
-
-                                <View className="w-full h-2.5 rounded-full bg-[#E4E4E7] overflow-hidden">
-                                    <Animated.View
-                                        style={[
-                                            { backgroundColor: '#2DB42D' },
-                                            animatedBarStyle,
-                                        ]}
-                                        className="h-full rounded-full"
-                                    />
-                                </View>
-                            </View>
-                        ) : null}
-
-                        {/* Error Banner */}
-                        {isError && errorMessage ? (
-                            <View className="mt-5 p-3.5 rounded-xl bg-error-background border border-error flex-row items-center gap-2.5">
-                                <SymbolView
-                                    name={{
-                                        ios: 'exclamationmark.triangle.fill',
-                                        android: 'error',
-                                        web: 'error',
-                                    }}
-                                    size={18}
-                                    tintColor="#FF383C"
-                                />
-                                <Text className="flex-1 font-inter-regular text-xs text-error">
-                                    {errorMessage}
-                                </Text>
-                            </View>
-                        ) : null}
-
-                        {/* What's Fixed & Improved Card */}
-                        {releaseNotes.fixes.length > 0 ? (
-                            <View className="mt-7 p-4 rounded-2xl bg-[#F7F7F8] border border-[#EBEBEC]">
-                                <Text className="font-figtree-bold text-sm text-text-black mb-3">
-                                    What&apos;s fixed &amp; improved
-                                </Text>
-
-                                <View className="gap-3">
-                                    {releaseNotes.fixes.map((item, idx) => (
-                                        <View
-                                            key={`${idx}-${item}`}
-                                            className="flex-row items-start gap-2.5"
-                                        >
-                                            <View className="mt-0.5">
-                                                <SymbolView
-                                                    name={{
-                                                        ios: 'checkmark.circle.fill',
-                                                        android: 'check_circle',
-                                                        web: 'check_circle',
-                                                    }}
-                                                    size={18}
-                                                    tintColor="#2DB42D"
-                                                />
-                                            </View>
-                                            <Text className="flex-1 font-inter-regular text-sm leading-5 text-text-black">
-                                                {item}
-                                            </Text>
-                                        </View>
-                                    ))}
-                                </View>
-                            </View>
-                        ) : null}
-                    </ScrollView>
-
-                    {/* Footer Action Buttons */}
-                    <View className="gap-2.5 pt-3">
-                        {isReady || isRestarting ? (
-                            <SubmitButton
-                                label="Restart & Apply Update"
-                                loadingLabel="Restarting..."
-                                isLoading={isRestarting}
-                                onPress={onRestartNow}
-                                borderRadius={100}
-                                height={52}
-                            />
-                        ) : (
-                            <SubmitButton
-                                label={isError ? 'Try Again' : 'Update Now'}
-                                loadingLabel={`Downloading... ${progress}%`}
-                                isLoading={isDownloading}
-                                onPress={onUpdateNow}
-                                borderRadius={100}
-                                height={52}
-                            />
-                        )}
-
-                        {!isDownloading && !isRestarting ? (
-                            <Pressable
-                                onPress={onDismiss}
-                                accessibilityRole="button"
-                                className="w-full h-12 rounded-full bg-input-background items-center justify-center active:opacity-80"
-                            >
-                                <Text className="font-figtree-medium text-base text-text-black">
-                                    Later
-                                </Text>
-                            </Pressable>
-                        ) : null}
+                        {/* Title & Update Message */}
+                        <Text className="font-figtree-bold text-[30px] leading-[36px] tracking-[-0.6px] text-text-black text-center mt-4">
+                            {headline}
+                        </Text>
+                        <Text className="font-inter-regular text-base leading-6 text-text-body text-center mt-2.5 px-2">
+                            {releaseNotes.message}
+                        </Text>
                     </View>
+
+                    {/* Download Progress Card */}
+                    {showProgress ? (
+                        <View className="mt-7 p-4 rounded-2xl bg-[#F7F7F8] border border-[#EBEBEC]">
+                            <View className="flex-row items-center justify-between mb-2.5">
+                                <Text className="font-figtree-medium text-sm text-text-black">
+                                    {progressStatusText}
+                                </Text>
+                                <Text className="font-figtree-bold text-sm text-primary">
+                                    {progress}%
+                                </Text>
+                            </View>
+
+                            <View className="w-full h-2.5 rounded-full bg-[#E4E4E7] overflow-hidden">
+                                <Animated.View
+                                    style={[
+                                        { backgroundColor: '#2DB42D' },
+                                        animatedBarStyle,
+                                    ]}
+                                    className="h-full rounded-full"
+                                />
+                            </View>
+                        </View>
+                    ) : null}
+
+                    {/* Error Banner */}
+                    {isError && errorMessage ? (
+                        <View className="mt-5 p-3.5 rounded-xl bg-error-background border border-error flex-row items-center gap-2.5">
+                            <SymbolView
+                                name={{
+                                    ios: 'exclamationmark.triangle.fill',
+                                    android: 'error',
+                                    web: 'error',
+                                }}
+                                size={18}
+                                tintColor="#FF383C"
+                            />
+                            <Text className="flex-1 font-inter-regular text-xs text-error">
+                                {errorMessage}
+                            </Text>
+                        </View>
+                    ) : null}
+
+                    {/* What's Fixed & Improved Card */}
+                    {releaseNotes.fixes.length > 0 ? (
+                        <View className="mt-7 p-4 rounded-2xl bg-[#F7F7F8] border border-[#EBEBEC]">
+                            <Text className="font-figtree-bold text-sm text-text-black mb-3">
+                                What&apos;s fixed &amp; improved
+                            </Text>
+
+                            <View className="gap-3">
+                                {releaseNotes.fixes.map((item, idx) => (
+                                    <View
+                                        key={`${idx}-${item}`}
+                                        className="flex-row items-start gap-2.5"
+                                    >
+                                        <View className="mt-0.5">
+                                            <SymbolView
+                                                name={{
+                                                    ios: 'checkmark.circle.fill',
+                                                    android: 'check_circle',
+                                                    web: 'check_circle',
+                                                }}
+                                                size={18}
+                                                tintColor="#2DB42D"
+                                            />
+                                        </View>
+                                        <Text className="flex-1 font-inter-regular text-sm leading-5 text-text-black">
+                                            {item}
+                                        </Text>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+                    ) : null}
+                </ScrollView>
+
+                {/* Footer Action Buttons */}
+                <View className="gap-2.5 pt-3">
+                    {isReady || isRestarting ? (
+                        <SubmitButton
+                            label="Restart & Apply Update"
+                            loadingLabel="Restarting..."
+                            isLoading={isRestarting}
+                            onPress={onRestartNow}
+                            borderRadius={100}
+                            height={52}
+                        />
+                    ) : (
+                        <SubmitButton
+                            label={isError ? 'Try Again' : 'Update Now'}
+                            loadingLabel={`Downloading... ${progress}%`}
+                            isLoading={isDownloading}
+                            onPress={onUpdateNow}
+                            borderRadius={100}
+                            height={52}
+                        />
+                    )}
+
+                    {!isDownloading && !isRestarting ? (
+                        <Pressable
+                            onPress={onDismiss}
+                            accessibilityRole="button"
+                            className="w-full h-12 rounded-full bg-input-background items-center justify-center active:opacity-80"
+                        >
+                            <Text className="font-figtree-medium text-base text-text-black">
+                                Later
+                            </Text>
+                        </Pressable>
+                    ) : null}
                 </View>
-            </SafeAreaView>
+            </View>
         </Modal>
     );
 }
